@@ -21,7 +21,7 @@ class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServi
         fo.write(request.inputData)
         fo.close()
         
-        converter = Convertor("-f PDF foo.docx")
+        converter = Convertor("-f pdf foo.docx")
         converter.convert("foo.docx")
 
         fo = open("foo.pdf", "rb")
