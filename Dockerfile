@@ -8,12 +8,18 @@ RUN apt-get update
 RUN apt-get install -y libreoffice 
 RUN apt-get install -y unoconv
 
+RUN apt-get install -y python3-pip
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install grpcio
+RUN python3 -m pip install grpcio-tools
+
+
 RUN mkdir /workdir
-#WORKDIR /workdir
 COPY main.py /
 COPY main.sh /
 
-#CMD /workdir/main.py
-#ENTRYPOINT [ "/usr/bin/python", "/workdir/main.py" ]
-#CMD /bin/sh
+COPY yadc.proto /
+RUN python3 -m grpc_tools.protoc -I/ --python_out=. --grpc_python_out=. /yadc.proto
+
+
 CMD ["/main.sh"]
