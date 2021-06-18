@@ -10,7 +10,7 @@ import grpc
 import yadc_pb2
 import yadc_pb2_grpc
 
-print("Starting grpc server!")
+print("Starting grpc server")
 
 class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServicer):
 
@@ -22,9 +22,6 @@ class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServi
         
         process = Popen(['unoconv', '-f', 'pdf', 'foo.docx'], stdout=PIPE, stderr=PIPE)
         stdout, stderr = process.communicate()
-
-        #converter = Convertor("-f pdf foo.docx")
-        #converter.convert("foo.docx")
 
         fo = open("foo.pdf", "rb")
         output = fo.read()

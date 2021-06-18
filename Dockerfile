@@ -1,8 +1,8 @@
 FROM debian:stable
 
-# Install MS fonts?
+# TODO: Install MS fonts as is done in gotenberg container
 # => https://github.com/thecodingmachine/gotenberg/blob/e6a5f4b20324047da04f84c2538dec548d99857a/build/base/Dockerfile
-# there are further fonts in the gotenberg repository
+# there are further fonts in the gotenberg repository laying around
 
 RUN apt-get update
 RUN apt-get install -y libreoffice 
