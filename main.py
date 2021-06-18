@@ -9,7 +9,6 @@ import yadc_pb2_grpc
 
 print("Hello World from yadc!")
 
-
 class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServicer):
 
     def Convert(self, request, context):

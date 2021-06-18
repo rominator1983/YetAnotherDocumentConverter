@@ -2,6 +2,8 @@ version: '3'
 services:
   yadc:
     image: yadc
+    ports:
+      - "50051:50051"
     container_name: yadc
     restart: always
     build:
