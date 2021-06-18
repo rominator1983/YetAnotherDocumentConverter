@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo "starting python script"
-
-#unoconv -h
+echo "Starting python script"
 
 /usr/bin/python3 /main.py

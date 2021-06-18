@@ -3,29 +3,33 @@ from concurrent import futures
 
 import sys
 import io
-import grpc
 
+from subprocess import Popen, PIPE
+
+import grpc
 import yadc_pb2
 import yadc_pb2_grpc
 
-import uno,unohelper
-
-print("Hello World from yadc!")
+print("Starting grpc server!")
 
 class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServicer):
 
     def Convert(self, request, context):
-        #print (request.mode)
+        
         fo = open("foo.docx", "w+b")
         fo.write(request.inputData)
         fo.close()
         
+        process = Popen(['unoconv', '-f', 'pdf', 'foo.docx'], stdout=PIPE, stderr=PIPE)
+        stdout, stderr = process.communicate()
+
         #converter = Convertor("-f pdf foo.docx")
         #converter.convert("foo.docx")
 
         fo = open("foo.pdf", "rb")
         output = fo.read()
         fo.close()
+
         return yadc_pb2.ConvertReply(ouputData=output)
 
 
