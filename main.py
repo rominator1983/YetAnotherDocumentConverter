@@ -24,6 +24,7 @@ class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServi
         
         args = ['unoconv', '-f', 'pdf', 'foo.docx']
         
+        # TODO: Handle PostScript mode
         if request.mode == 1:
           args.insert(3, "-eUseTaggedPDF=1")
           args.insert(4, "-eSelectPdfVersion=1")
