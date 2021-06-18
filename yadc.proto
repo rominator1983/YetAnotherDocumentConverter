@@ -1,0 +1,15 @@
+syntax = "proto3";
+// to update code behind run:
+// python -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/yadc.proto
+
+service Greeter {
+  rpc Convert (ConvertRequest) returns (ConvertReply) {}
+}
+
+message ConvertRequest {
+  bytes inputData = 1;
+}
+
+message ConvertReply {
+  bytes ouputData = 1;
+}
