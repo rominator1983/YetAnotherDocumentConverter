@@ -13,7 +13,7 @@ from unoconv import Convertor
 
 print("Hello World from yadc!")
 
-converter = Convertor()
+#converter = Convertor()
 
 class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServicer):
 

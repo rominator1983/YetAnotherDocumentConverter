@@ -7,6 +7,8 @@ FROM debian:stable
 RUN apt-get update
 RUN apt-get install -y libreoffice 
 RUN apt-get install -y python3-pip
+RUN apt-get install -y libreoffice-script-provider-python
+RUN apt-get install -y mc
 
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install grpcio
