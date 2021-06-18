@@ -1,0 +1,9 @@
+version: '3'
+services:
+  yadc:
+    image: yadc
+    container_name: yadc
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
