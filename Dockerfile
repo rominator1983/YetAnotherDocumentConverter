@@ -12,6 +12,7 @@ RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install grpcio
 RUN python3 -m pip install grpcio-tools
 RUN python3 -m pip install unoconv
+RUN cp /usr/local/bin/unoconv /unoconv.py
 
 RUN mkdir /workdir
 COPY main.py /

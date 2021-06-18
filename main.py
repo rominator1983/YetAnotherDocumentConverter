@@ -1,13 +1,19 @@
 #!/usr/bin/python3
 from concurrent import futures
 
+import sys
+sys.path.append("/")
 import grpc
 
 import yadc_pb2
 import yadc_pb2_grpc
 
+import uno,unohelper
+from unoconv import Convertor
 
 print("Hello World from yadc!")
+
+converter = Convertor()
 
 class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServicer):
 
