@@ -22,5 +22,3 @@ COPY main.sh /
 COPY main.py /
 
 CMD ["/main.sh"]
-
-# TODO: publish on docker hub
