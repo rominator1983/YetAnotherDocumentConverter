@@ -9,7 +9,6 @@ message ConvertRequest {
   enum Mode {
     Pdf = 0;
     PdfA = 1;
-    PostScript = 2;
   }
   Mode mode = 2;
 }

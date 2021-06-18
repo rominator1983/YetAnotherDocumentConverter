@@ -12,6 +12,7 @@ import yadc_pb2_grpc
 
 print("Starting grpc server")
 # TODO: start unoconv listener for faster request handling
+# TODO: Better init support instead of starting grpc server here (zombie processes etc.)
         
 class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServicer):
 
@@ -24,7 +25,6 @@ class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServi
         
         args = ['unoconv', '-f', 'pdf', 'foo.docx']
         
-        # TODO: Handle PostScript mode
         if request.mode == 1:
           args.insert(3, "-eUseTaggedPDF=1")
           args.insert(4, "-eSelectPdfVersion=1")
