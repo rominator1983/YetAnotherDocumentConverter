@@ -11,11 +11,13 @@ import yadc_pb2
 import yadc_pb2_grpc
 
 print("Starting grpc server")
-
+# TODO: start unoconv listener for faster request handling
+        
 class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServicer):
 
     def Convert(self, request, context):
         
+        # TODO: is synchronization necessary
         fo = open("foo.docx", "w+b")
         fo.write(request.inputData)
         fo.close()
@@ -26,6 +28,7 @@ class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServi
           args.insert(3, "-eUseTaggedPDF=1")
           args.insert(4, "-eSelectPdfVersion=1")
 
+        # TODO: implement error handling, return code etc.
         process = Popen(args,stdout=PIPE, stderr=PIPE)
         stdout, stderr = process.communicate()
 
