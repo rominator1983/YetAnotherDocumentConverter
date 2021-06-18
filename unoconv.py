@@ -848,6 +848,22 @@ class Convertor:
         global op
         op = Options(args)
 
+        for of in find_offices():
+            if of.python != sys.executable and not sys.executable.startswith(of.basepath):
+                python_switch(of)
+            office_environ(of)
+            # debug_office()
+            try:
+                import uno
+                import unohelper
+                office = of
+                break
+            except:
+                # debug_office()
+                print("unoconv: Cannot find a suitable pyuno library and python binary combination in %s" % of, file=sys.stderr)
+                print("ERROR:", sys.exc_info()[1], file=sys.stderr)
+                print(file=sys.stderr)
+
         # Test for an existing connection
         info(3, 'Connection type: %s' % op.connection)
         unocontext = self.connect(resolver)
@@ -1402,27 +1418,12 @@ def main():
 
 #    info(3, 'sysname=%s, platform=%s, python=%s, python-version=%s' % (os.name, sys.platform, sys.executable, sys.version))
 
-    for of in find_offices():
-        if of.python != sys.executable and not sys.executable.startswith(of.basepath):
-            python_switch(of)
-        office_environ(of)
-        # debug_office()
-        try:
-            import uno
-            import unohelper
-            office = of
-            break
-        except:
-            # debug_office()
-            print("unoconv: Cannot find a suitable pyuno library and python binary combination in %s" % of, file=sys.stderr)
-            print("ERROR:", sys.exc_info()[1], file=sys.stderr)
-            print(file=sys.stderr)
-    else:
-        # debug_office()
-        print("unoconv: Cannot find a suitable office installation on your system.", file=sys.stderr)
-        print("ERROR: Please locate your office installation and send your feedback to:", file=sys.stderr)
-        print("       http://github.com/dagwieers/unoconv/issues", file=sys.stderr)
-        sys.exit(1)
+#else:
+    # debug_office()
+    #print("unoconv: Cannot find a suitable office installation on your system.", file=sys.stderr)
+    #print("ERROR: Please locate your office installation and send your feedback to:", file=sys.stderr)
+    #print("       http://github.com/dagwieers/unoconv/issues", file=sys.stderr)
+    #sys.exit(1)
 
     # Working pyuno library found. Import classes.
     
