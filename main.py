@@ -20,7 +20,13 @@ class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServi
         fo.write(request.inputData)
         fo.close()
         
-        process = Popen(['unoconv', '-f', 'pdf', 'foo.docx'], stdout=PIPE, stderr=PIPE)
+        args = ['unoconv', '-f', 'pdf', 'foo.docx']
+        
+        if request.mode == 1:
+          args.insert(3, "-eUseTaggedPDF=1")
+          args.insert(4, "-eSelectPdfVersion=1")
+
+        process = Popen(args,stdout=PIPE, stderr=PIPE)
         stdout, stderr = process.communicate()
 
         fo = open("foo.pdf", "rb")
