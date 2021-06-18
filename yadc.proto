@@ -8,6 +8,11 @@ service Greeter {
 
 message ConvertRequest {
   bytes inputData = 1;
+  enum Mode {
+    Pdf = 0:
+    PdfA = 1:
+    PostScript = 2:
+  }
 }
 
 message ConvertReply {
