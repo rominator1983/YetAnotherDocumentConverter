@@ -2,7 +2,7 @@
 from concurrent import futures
 
 import sys
-sys.path.append("/")
+import io
 import grpc
 
 import yadc_pb2
@@ -13,12 +13,21 @@ from unoconv import Convertor
 
 print("Hello World from yadc!")
 
-#converter = Convertor()
-
 class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServicer):
 
     def Convert(self, request, context):
-        return yadc_pb2.ConvertReply(ouputData=[42,21])
+        #print (request.mode)
+        fo = open("foo.docx", "w+b")
+        fo.write(request.inputData)
+        fo.close()
+        
+        converter = Convertor("-f PDF foo.docx")
+        converter.convert("foo.docx")
+
+        fo = open("foo.pdf", "rb")
+        output = fo.read()
+        fo.close()
+        return yadc_pb2.ConvertReply(ouputData=output)
 
 
 server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

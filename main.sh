@@ -2,6 +2,6 @@
 
 echo "starting python script"
 
-unoconv -h
+#unoconv -h
 
 /usr/bin/python3 /main.py
