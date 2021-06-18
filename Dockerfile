@@ -13,14 +13,14 @@ RUN apt-get install -y mc
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install grpcio
 RUN python3 -m pip install grpcio-tools
-#RUN python3 -m pip install unoconv
+RUN python3 -m pip install unoconv
 #RUN cp /usr/local/bin/unoconv /unoconv.py
 
 COPY yadc.proto /
 #COPY yadcinput.docx /
 RUN python3 -m grpc_tools.protoc -I/ --python_out=. --grpc_python_out=. /yadc.proto
 
-COPY unoconv.py /
+#COPY unoconv.py /
 COPY main.sh /
 COPY main.py /
 

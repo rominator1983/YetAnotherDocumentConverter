@@ -9,7 +9,6 @@ import yadc_pb2
 import yadc_pb2_grpc
 
 import uno,unohelper
-from unoconv import Convertor
 
 print("Hello World from yadc!")
 
@@ -21,8 +20,8 @@ class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServi
         fo.write(request.inputData)
         fo.close()
         
-        converter = Convertor("-f pdf foo.docx")
-        converter.convert("foo.docx")
+        #converter = Convertor("-f pdf foo.docx")
+        #converter.convert("foo.docx")
 
         fo = open("foo.pdf", "rb")
         output = fo.read()
