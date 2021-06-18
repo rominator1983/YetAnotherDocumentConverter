@@ -17,7 +17,7 @@ class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServi
 
     def Convert(self, request, context):
         
-        # TODO: is synchronization necessary
+        # TODO: later: is synchronization necessary
         fo = open("foo.docx", "w+b")
         fo.write(request.inputData)
         fo.close()
