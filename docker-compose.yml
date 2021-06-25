@@ -1,10 +1,10 @@
 version: '3'
 services:
   yadc:
-    image: yadc
+    image: yadc-development
     ports:
       - "50051:50051"
-    container_name: yadc
+    container_name: yadc-development
     restart: always
     build:
       context: .

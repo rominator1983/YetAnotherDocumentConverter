@@ -11,14 +11,13 @@ import yadc_pb2
 import yadc_pb2_grpc
 
 print("Starting grpc server")
-# TODO: start unoconv listener for faster request handling
-# TODO: Better init support instead of starting grpc server here (zombie processes etc.)
-        
+
 class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServicer):
 
     def Convert(self, request, context):
         
-        # TODO: later: is synchronization necessary
+        # TODO: is synchronization necessary? The documentation at https://docs.moodle.org/311/en/Universal_Office_Converter_(unoconv) states that
+        #    this should only be necessary when calling unoconv directly without listener
         fo = open("foo.docx", "w+b")
         fo.write(request.inputData)
         fo.close()
@@ -29,7 +28,7 @@ class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServi
           args.insert(3, "-eUseTaggedPDF=1")
           args.insert(4, "-eSelectPdfVersion=1")
 
-        # TODO: implement error handling, return code etc.
+        # TODO: implement error handling, return codes etc.
         process = Popen(args,stdout=PIPE, stderr=PIPE)
         stdout, stderr = process.communicate()
 
