@@ -19,6 +19,8 @@ COPY yadc.proto /
 RUN python3 -m grpc_tools.protoc -I/ --python_out=. --grpc_python_out=. /yadc.proto
 
 COPY main.sh /
+RUN chmod +x /main.sh
 COPY main.py /
+RUN chmod +x /main.py
 
 CMD ["/main.sh"]
