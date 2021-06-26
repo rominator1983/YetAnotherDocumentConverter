@@ -33,7 +33,8 @@ class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServi
           args.insert(3, "-eUseTaggedPDF=1")
           args.insert(4, "-eSelectPdfVersion=1")
 
-        print("converting document @ " + now.strftime("%Y-%m-%d %H:%M:%SZ"))
+        print ("")
+        print("converting document @ " + now.strftime("%Y-%m-%dT%H:%M:%SZ"))
         
         if request.mode == 0:
           print("- mode: PDF")
@@ -50,7 +51,6 @@ class YetAnotherDocumentConverter(yadc_pb2_grpc.YetAnotherDocumentConverterServi
 
         executionTime = (time.time() - startTime)
         print("- rendering took: " + str(executionTime) + " seconds")
-        print("")
 
         return yadc_pb2.ConvertReply(ouputData=output)
 
