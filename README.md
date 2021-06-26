@@ -1,11 +1,13 @@
 # Yet Another Document Converter
-A docker container for converting Open XML documents to PDF, PDF/A.
+A docker container for converting Open XML documents (mainly DOCX files) to PDF, PDF/A.
 
-Conversion is done with libre office and unoconv.
+This project is a result of a freaky friday that took place at RUBICON IT https://www.rubicon.eu.
 
-The docker container runs a GRPC server to call the conversion.
+Conversion is done with libre office using unoconv.
+
+The docker container runs a GRPC server for a client to call the conversion. Interface see `yadc.proto`.
 
 Start with: `docker run -p50051:50051 rominator/yadc`
-The docker-compose.yml file is only for local development/testing.
 
-This project is a result of a freaky friday that took place at RUBICON IT https://www.rubicon.eu/.
+The `docker-compose.yml` file is only for local development/testing.
+Test/develop locally via `run.ps1`
