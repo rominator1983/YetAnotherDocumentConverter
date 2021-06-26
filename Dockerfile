@@ -27,10 +27,10 @@ RUN python3 -m pip install grpcio-tools
 COPY yadc.proto /
 RUN python3 -m grpc_tools.protoc -I/ --python_out=. --grpc_python_out=. /yadc.proto
 
-COPY main.py /
-RUN chmod +x /main.py
-
 COPY main.sh /
 RUN chmod +x /main.sh
+
+COPY main.py /
+RUN chmod +x /main.py
 
 ENTRYPOINT ["/usr/bin/tini", "--", "/main.sh"]
