@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package yadc.v1;
+
 service YetAnotherDocumentConverter {
   rpc Convert (ConvertRequest) returns (ConvertReply) {}
 }

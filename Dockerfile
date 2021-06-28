@@ -33,4 +33,5 @@ RUN chmod +x /main.sh
 COPY main.py /
 RUN chmod +x /main.py
 
+# TODO: for some reason CTRL+C does not get passed through and exit the container when starting attached when running the dockerhub-image locally
 ENTRYPOINT ["/usr/bin/tini", "--", "/main.sh"]
