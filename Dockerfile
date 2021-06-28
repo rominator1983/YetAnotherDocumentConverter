@@ -1,18 +1,52 @@
 FROM debian:stable
 
-# TODO: Install MS fonts as is done in gotenberg container
-# => https://github.com/thecodingmachine/gotenberg/blob/e6a5f4b20324047da04f84c2538dec548d99857a/build/base/Dockerfile
-# there are further fonts in the gotenberg repository laying around or installed in the Dockerfile
-
+RUN sed -i -e's/ main/ main contrib non-free/g' /etc/apt/sources.list
 RUN apt-get update
-RUN apt-get install -y libreoffice 
+
+# NOTE: Install fonts. Basically copied from https://github.com/thecodingmachine/gotenberg/blob/master/build/base/Dockerfile
+# TODO: there are further fonts and a fonts.conf in the gotenberg repository laying around here: https://github.com/thecodingmachine/gotenberg/blob/master/build/base/
+RUN apt-get install -y msttcorefonts
+RUN apt-get install --no-install-recommends -y culmus
+RUN apt-get install --no-install-recommends -y fonts-beng
+RUN apt-get install --no-install-recommends -y fonts-hosny-amiri
+RUN apt-get install --no-install-recommends -y fonts-lklug-sinhala
+RUN apt-get install --no-install-recommends -y fonts-lohit-guru
+RUN apt-get install --no-install-recommends -y fonts-lohit-knda
+RUN apt-get install --no-install-recommends -y fonts-samyak-gujr
+RUN apt-get install --no-install-recommends -y fonts-samyak-mlym
+RUN apt-get install --no-install-recommends -y fonts-samyak-taml
+RUN apt-get install --no-install-recommends -y fonts-sarai
+RUN apt-get install --no-install-recommends -y fonts-sil-abyssinica
+RUN apt-get install --no-install-recommends -y fonts-sil-padauk
+RUN apt-get install --no-install-recommends -y fonts-telu
+RUN apt-get install --no-install-recommends -y fonts-thai-tlwg
+RUN apt-get install --no-install-recommends -y ttf-wqy-zenhei
+RUN apt-get install --no-install-recommends -y fonts-arphic-uming
+RUN apt-get install --no-install-recommends -y fonts-ipafont-mincho
+RUN apt-get install --no-install-recommends -y fonts-ipafont-gothic
+RUN apt-get install --no-install-recommends -y fonts-unfonts-core
+# LibreOffice recommends.
+RUN apt-get install --no-install-recommends -y fonts-crosextra-caladea
+RUN apt-get install --no-install-recommends -y fonts-crosextra-carlito
+RUN apt-get install --no-install-recommends -y fonts-dejavu
+RUN apt-get install --no-install-recommends -y fonts-dejavu-extra
+RUN apt-get install --no-install-recommends -y fonts-liberation
+RUN apt-get install --no-install-recommends -y fonts-liberation2
+RUN apt-get install --no-install-recommends -y fonts-linuxlibertine
+RUN apt-get install --no-install-recommends -y fonts-noto-core
+RUN apt-get install --no-install-recommends -y fonts-noto-mono
+RUN apt-get install --no-install-recommends -y fonts-noto-ui-core
+RUN apt-get install --no-install-recommends -y fonts-sil-gentium
+RUN apt-get install --no-install-recommends -y fonts-sil-gentium-basic 
+
+RUN apt-get install -y libreoffice
 RUN apt-get install -y python3-pip
 RUN apt-get install -y libreoffice-script-provider-python
 RUN apt-get install -y mc
 RUN apt-get install -y unoconv
 RUN apt-get install -y tini
 
-# TODO: https://docs.moodle.org/311/en/mod/assign/feedback/editpdf/testunoconv/initd states, that there should be a cron job starting the listener too
+# TODO: https://docs.moodle.org/311/en/mod/assign/feedback/editpdf/testunoconv/initd states, that there should be a cron job starting the listener too. Test, if this is needed by checking for the listener in the rendering step
 COPY unoconvListenerInitScript.sh /
 RUN chmod +x unoconvListenerInitScript.sh
 RUN cp /unoconvListenerInitScript.sh /etc/init.d/unoconvd

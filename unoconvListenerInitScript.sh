@@ -6,7 +6,7 @@
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Startup script for unoconvd listener
-# Description:       Startup script for unoconvd listener. Allows starting/stopping/restarting and checking status of unoconvd listener.
+# Description:       Startup script for unoconvd listener. Allows starting/stopping/restarting and checking status of unoconvd listener. Copied from https://docs.moodle.org/39/en/mod/assign/feedback/editpdf/testunoconv/initd
 ### END INIT INFO
 
 # Author: Damyon Wiese <damyon@moodle.com>
