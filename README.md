@@ -10,4 +10,4 @@ The docker container runs a GRPC server for a client to call the conversion. Int
 Start with: `docker run -p50051:50051 rominator/yadc`
 
 The `docker-compose.yml` file is only for local development/testing.
-Test/develop locally via `run.ps1`
+Spin up a container locally via `run.ps1`
