@@ -4,7 +4,9 @@ RUN sed -i -e's/ main/ main contrib non-free/g' /etc/apt/sources.list
 RUN apt-get update
 
 # NOTE: Install fonts. Basically copied from https://github.com/thecodingmachine/gotenberg/blob/master/build/base/Dockerfile
-# TODO: there are further fonts and a fonts.conf in the gotenberg repository laying around here: https://github.com/thecodingmachine/gotenberg/blob/master/build/base/
+# TODO: add noto-emoji as in https://github.com/gotenberg/gotenberg/blob/main/build/Dockerfile:
+# curl -Ls "https://github.com/googlefonts/noto-emoji/raw/$NOTO_COLOR_EMOJI_VERSION/fonts/NotoColorEmoji.ttf" -o /usr/local/share/fonts/NotoColorEmoji.ttf &&\
+
 RUN apt-get install -y msttcorefonts
 RUN apt-get install --no-install-recommends -y culmus
 RUN apt-get install --no-install-recommends -y fonts-beng
@@ -33,6 +35,7 @@ RUN apt-get install --no-install-recommends -y fonts-dejavu-extra
 RUN apt-get install --no-install-recommends -y fonts-liberation
 RUN apt-get install --no-install-recommends -y fonts-liberation2
 RUN apt-get install --no-install-recommends -y fonts-linuxlibertine
+RUN apt-get install --no-install-recommends -y fonts-noto-cjk
 RUN apt-get install --no-install-recommends -y fonts-noto-core
 RUN apt-get install --no-install-recommends -y fonts-noto-mono
 RUN apt-get install --no-install-recommends -y fonts-noto-ui-core
@@ -46,7 +49,9 @@ RUN apt-get install -y mc
 RUN apt-get install -y unoconv
 RUN apt-get install -y tini
 
-# TODO: https://docs.moodle.org/311/en/mod/assign/feedback/editpdf/testunoconv/initd states, that there should be a cron job starting the listener too. Test, if this is needed by checking for the listener in the rendering step
+# TODO: https://docs.moodle.org/311/en/mod/assign/feedback/editpdf/testunoconv/initd states
+#   that there should be a cron job starting the listener too.
+#   Test, if this is needed by checking for the listener in the rendering step.
 COPY unoconvListenerInitScript.sh /
 RUN chmod +x unoconvListenerInitScript.sh
 RUN cp /unoconvListenerInitScript.sh /etc/init.d/unoconvd
