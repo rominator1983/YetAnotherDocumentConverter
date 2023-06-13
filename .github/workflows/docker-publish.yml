@@ -6,8 +6,8 @@ name: Build and publish to dockerhub
 # documentation.
 
 on:
-  schedule:
-    - cron: '33 17 * * *'
+#  schedule:
+#    - cron: '33 17 * * *'
   push:
     branches: [ "main" ]
     # Publish semver tags as releases.
